@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+## Utils scripts de configuração
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### `npm run test -- --watchAll="false" --coverage` run all tests e generate coverage
 
-## Available Scripts
+### `npm i -D prettier eslint-plugin-prettier eslint-config-prettier` install prettier and config eslint
 
-In the project directory, you can run:
+### `npm i prop-types` instala os tipos para javascript, para utilizar nos componentes react
 
-### `npm start`
+## Aplica as correções do ESLint nos documentos .jsx
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### `npx eslint src/**/*.jsx --fix` fix rules ESLint
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Estudo
 
-### `npm test`
+### Jest
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+getByRole `utilizar get ao pesquisar um elemento do DOM apresenta erro`
+queryByRole
+`utilizar query ao pesquisar um elemento do DOM *não* apresenta erro`
 
-### `npm run build`
+## Regra ds Hooks
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## `https://pt-br.reactjs.org/docs/hooks-rules.html`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Como parte do meu compromisso com você, estou revisando este curso para
+atualizar quaisquer partes que possam ser relevantes na nova versão do React
+(React 18).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Ao seguir essa seção, percebi que algumas configurações do Prettier e do ESLint
+estão um pouco diferentes do que costumo usar atualmente (30/04/2022).
 
-### `npm run eject`
+Instale o Prettier:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+npm i -D prettier eslint-plugin-prettier eslint-config-prettier Segue como está
+a base do meu .eslintrc.js:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+module.exports = { env: { browser: true, es2021: true, jest: true, node: true,
+}, extends: [ 'eslint:recommended', 'plugin:react/recommended',
+'plugin:react-hooks/recommended', 'plugin:prettier/recommended', ], globals: {
+Atomics: 'readonly', SharedArrayBuffer: 'readonly', }, parser:
+'@babel/eslint-parser', parserOptions: { ecmaFeatures: { jsx: true, },
+ecmaVersion: 'latest', sourceType: 'module', }, plugins: ['react', 'prettier',
+'react-hooks'], settings: { react: { version: 'detect', }, }, rules: {
+'react/react-in-jsx-scope': 'off', }, }; Podem existir atualizações ou muitas
+outras modificações. Porém essa é a base inicial do arquivo.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Segue como está o meu arquivo .prettierrc.js:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+module.exports = { arrowParens: 'always', bracketSpacing: true, endOfLine: 'lf',
+htmlWhitespaceSensitivity: 'ignore', insertPragma: false, jsxSingleQuote: false,
+printWidth: 80, proseWrap: 'always', quoteProps: 'as-needed', requirePragma:
+false, semi: true, singleQuote: true, tabWidth: 2, trailingComma: 'all',
+useTabs: false, vueIndentScriptAndStyle: false, embeddedLanguageFormatting:
+'off', }; Importante: se você usar a extensão do VS Code para o "Prettier",
+aponte o caminho do ".prettierrc.js" do projeto nas configurações da extensão.
+Pra isso, basta adicionar isso no settings.json do VS Code:
 
-## Learn More
+{ "prettier.configPath": "./.prettierrc.js" } Crie um arquivo chamado de
+.babelrc.json na raiz do projeto com os seguintes dados:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+{ "presets": ["@babel/preset-env", "@babel/preset-react"] } Caso queira ver um
+projeto ativo com React 18, React Router Dom v6, ESLint e Prettier, veja:
+https://github.com/luizomf/base-react-18-router-dom-v6-eslint-prettier
