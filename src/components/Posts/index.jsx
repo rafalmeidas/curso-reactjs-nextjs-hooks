@@ -14,7 +14,6 @@ export const Posts = () => {
 
   const counterContext = useContext(CounterContext);
   const { counterState, counterDispatch } = counterContext;
-  console.log(counterContext);
 
   useEffect(() => {
     loadPosts(postsDispatch).then((dispatch) => {
