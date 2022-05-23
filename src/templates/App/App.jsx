@@ -11,12 +11,15 @@ import P from 'prop-types';
 import './styles.css';
 import { PostsProvider } from '../../contexts/PostsProvider';
 import { Posts } from '../../components/Posts';
+import { CounterProvider } from '../../contexts/CounterProvider';
 
 function App() {
   return (
-    <PostsProvider>
-      <Posts />
-    </PostsProvider>
+    <CounterProvider>
+      <PostsProvider>
+        <Posts />
+      </PostsProvider>
+    </CounterProvider>
   );
 }
 
