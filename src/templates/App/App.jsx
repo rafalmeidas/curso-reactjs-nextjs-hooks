@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 
-function App() {
-  return <div style={{ fontSize: '60px' }}>Olá</div>;
-}
+const App = () => {
+  return (
+    <div>
+      <h1>Olá</h1>
+    </div>
+  );
+};
 
 export default App;
