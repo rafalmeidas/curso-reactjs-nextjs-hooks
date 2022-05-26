@@ -1,9 +1,15 @@
-import './styles.css';
+import P from 'prop-types';
 
-export const Button = ({ text, onClick, disable }) => {
+export const Button = ({ children, onButtonClick, disabled = false }) => {
   return (
-    <button disabled={disable} className="button" onClick={onClick}>
-      {text}
+    <button disabled={disabled} onClick={onButtonClick}>
+      {children}
     </button>
   );
+};
+
+Button.propTypes = {
+  children: P.node.isRequired,
+  onButtonClick: P.func.isRequired,
+  disabled: P.bool,
 };
